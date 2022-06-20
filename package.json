@@ -1,0 +1,35 @@
+{
+  "name": "cloud-function-runtime-demo",
+  "version": "1.0.0",
+  "description": "云函数运行环境 demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JiyuShao/cloud-function-runtime-demo.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JiyuShao/cloud-function-runtime-demo/issues"
+  },
+  "homepage": "https://github.com/JiyuShao/cloud-function-runtime-demo#readme",
+  "devDependencies": {
+    "@types/async": "^3.2.13",
+    "@types/koa": "^2.13.4",
+    "@types/koa__router": "^8.0.11",
+    "@types/node": "^18.0.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@koa/router": "^10.1.1",
+    "async": "^3.2.4",
+    "koa": "^2.13.4",
+    "koa-helmet": "^6.1.0",
+    "winston": "^3.7.2"
+  }
+}
