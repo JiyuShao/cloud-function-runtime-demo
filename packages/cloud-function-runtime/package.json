@@ -1,0 +1,26 @@
+{
+  "name": "cloud-function-runtime",
+  "private": true,
+  "version": "0.0.1",
+  "description": "云函数运行环境",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@koa/router": "^10.1.1",
+    "@types/async": "^3.2.13",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.7",
+    "@types/koa__router": "^8.0.11",
+    "@types/node": "^18.0.0",
+    "async": "^3.2.4",
+    "isolated-vm": "^4.4.1",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-helmet": "^6.1.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4",
+    "winston": "^3.7.2"
+  }
+}

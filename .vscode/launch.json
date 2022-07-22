@@ -4,7 +4,7 @@
       "name": "ts-node",
       "type": "node",
       "request": "launch",
-      "args": ["./src/index.ts"],
+      "args": ["./packages/cloud-function-runtime/src/index.ts"],
       "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
       "cwd": "${workspaceRoot}",
       "internalConsoleOptions": "openOnSessionStart",
