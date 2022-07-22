@@ -18,18 +18,19 @@
   },
   "homepage": "https://github.com/JiyuShao/cloud-function-runtime-demo#readme",
   "devDependencies": {
+    "@koa/router": "^10.1.1",
     "@types/async": "^3.2.13",
     "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.7",
     "@types/koa__router": "^8.0.11",
     "@types/node": "^18.0.0",
-    "ts-node": "^10.8.1",
-    "typescript": "^4.7.4"
-  },
-  "dependencies": {
-    "@koa/router": "^10.1.1",
     "async": "^3.2.4",
+    "isolated-vm": "^4.4.1",
     "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
     "koa-helmet": "^6.1.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4",
     "winston": "^3.7.2"
   }
 }

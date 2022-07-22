@@ -1,5 +1,5 @@
 import logger, { Logger } from "./utils/logger";
-import { createServer } from "./server/server";
+import { createServer } from "./utils/server";
 
 export async function init() {
   try {

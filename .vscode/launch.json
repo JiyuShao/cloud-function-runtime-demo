@@ -7,7 +7,9 @@
       "args": ["./src/index.ts"],
       "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
       "cwd": "${workspaceRoot}",
-      "internalConsoleOptions": "openOnSessionStart"
+      "internalConsoleOptions": "openOnSessionStart",
+       // Capture "std" instead of "console"
+      "outputCapture": "std"
     }
   ]
 }

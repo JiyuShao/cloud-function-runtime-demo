@@ -1,5 +1,6 @@
 import { Server } from "http";
 import Koa from "koa";
+import bodyParser from "koa-bodyparser";
 import helmet from "koa-helmet";
 import { ErrorCallback, retry } from "async";
 import * as errors from "./errors";
@@ -63,6 +64,8 @@ export function createServer(): AppServer {
   const app = new Koa();
   const appSrv = new AppServer(app);
 
+  app.use(bodyParser());
+  
   // Register Middlewares
   app.use(helmet());
 
