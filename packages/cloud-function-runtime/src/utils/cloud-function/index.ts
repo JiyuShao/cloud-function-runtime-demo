@@ -32,7 +32,9 @@ export const invokeCloudFunction = (code: string, args: any[]): string => {
   try {
     instance = new CloudFunction({});
     const func = instance.createCloudFunction(code);
-    return func(...args);
+    const result = func(...args);
+    instance.destory();
+    return result;
   } catch (error) {
     instance?.destory();
     throw error;
