@@ -1,6 +1,11 @@
 import path from "path";
 import { Configuration } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import WebpackStaticBuildPlugin from "./utils/webpack-static-build-plugin";
+
+function resolvePath(relativePath: string) {
+  return path.resolve(__dirname, `../${relativePath}`);
+}
 
 export default function getWebpackConfig(
   mode: Configuration["mode"]
@@ -8,18 +13,22 @@ export default function getWebpackConfig(
   const config: Configuration = {
     mode,
     entry: {
-      index: path.resolve(__dirname, "../src/index.ts"),
+      index: resolvePath("src/index"),
     },
     output: {
-      path: path.resolve(__dirname, "../dist"),
+      path: resolvePath("dist"),
     },
     devServer: {
       port: 3000,
-      open: true,
+      // open: true,
     },
     devtool: "source-map",
     resolve: {
       extensions: [".js", ".ts"],
+      alias: {
+        "@api": resolvePath("src/api"),
+        "@utils": resolvePath("src/utils"),
+      },
     },
     module: {
       rules: [
@@ -33,14 +42,18 @@ export default function getWebpackConfig(
         },
         {
           test: /\.ts$/,
-          loader: "ts-loader",
-          include: path.resolve(__dirname, "../src"),
+          use: ["ts-loader"],
+          include: resolvePath("src"),
         },
       ],
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "../public/index.html"),
+        template: resolvePath("public/index.html"),
+      }),
+      new WebpackStaticBuildPlugin({
+        cwd: resolvePath("src"),
+        apiPattern: "api/**/*.ts",
       }),
     ],
     stats: {

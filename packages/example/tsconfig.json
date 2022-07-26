@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "target": "esnext",
     "lib": ["DOM", "ESNext"],
     "allowJs": true,
@@ -13,9 +14,14 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "newLine": "lf",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "isolatedModules": true
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@api/*": ["src/api/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "include": ["scripts", "src"],
   "exclude": ["node_modules"],

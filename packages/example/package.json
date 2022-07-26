@@ -4,19 +4,25 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development ts-node --project ./tsconfig.json ./scripts/debug.ts",
-    "build": "yarn run clean && yarn run build:webpack",
-    "build:webpack": "cross-env NODE_ENV=production ts-node --project ./tsconfig.json ./scripts/build.ts",
+    "dev-static": "ts-node --project ./tsconfig.json ./scripts/debug-static.ts",
+    "build-static": "yarn run clean && yarn run build:webpack",
+    "build:webpack": "ts-node --project ./tsconfig.json ./scripts/build-static.ts",
     "clean": "rimraf lib"
   },
   "devDependencies": {
+    "@babel/generator": "^7.18.9",
+    "@babel/parser": "^7.18.9",
+    "@babel/traverse": "^7.18.9",
+    "@types/babel__generator": "^7.6.4",
+    "@types/babel__traverse": "^7.17.1",
     "@types/rimraf": "^3",
-    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
+    "node-fetch": "^3.2.9",
     "rimraf": "^3.0.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.3.1",
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
     "webpack": "^5.73.0",
     "webpack-dev-server": "^4.9.3"
   }
