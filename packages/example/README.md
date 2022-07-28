@@ -12,7 +12,7 @@
 
 ```bash
 # 启动后端调试项目
-yarn run build-server
+yarn run dev-server
 
 # 启动前端调试项目
 yarn run dev-static

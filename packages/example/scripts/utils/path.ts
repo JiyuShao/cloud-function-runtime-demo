@@ -6,7 +6,7 @@ import glob from "glob";
  * @param {string} relativePath 相对路径
  * @returns {string} 绝对路径
  */
-export function resolvePath(relativePath: string) {
+export function resolvePath(relativePath: string = "") {
   return path.resolve(__dirname, `../../${relativePath}`);
 }
 

@@ -1,16 +1,18 @@
-import Webpack from "webpack";
-import getWebpackConfig from "./utils/webpack.server.config";
+import * as rollup from "rollup";
+import rollupServerBuildConfig from "./utils/rollup-server-build.config";
 
-const webpackConfig = getWebpackConfig("production");
-Webpack(webpackConfig, (err, stats) => {
-  if (err) {
-    console.error(err.stack || err);
-  } else if (stats?.hasErrors()) {
-    console.log(
-      stats?.toString({
-        colors: true,
-      })
-    );
-    console.error("There was an error compiling, review above");
+rollupServerBuildConfig.forEach(async (currentConfig) => {
+  let bundle;
+  try {
+    bundle = await rollup.rollup(currentConfig);
+    await bundle.generate(currentConfig);
+    await bundle.write(currentConfig);
+    await bundle.close();
+  } catch (error) {
+    console.error(error);
+    if (bundle) {
+      await bundle.close();
+    }
+    process.exit(1);
   }
 });
