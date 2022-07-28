@@ -2,6 +2,7 @@ import { Server } from "http";
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
 import helmet from "koa-helmet";
+import cors from "@koa/cors";
 import { ErrorCallback, retry } from "async";
 import * as errors from "./errors";
 import router from "./router";
@@ -64,8 +65,9 @@ export function createServer(): AppServer {
   const app = new Koa();
   const appSrv = new AppServer(app);
 
+  app.use(cors());
   app.use(bodyParser());
-  
+
   // Register Middlewares
   app.use(helmet());
 

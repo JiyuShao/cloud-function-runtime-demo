@@ -17,7 +17,7 @@ export default function getWebpackConfig(
       path: resolvePath("dist/static"),
     },
     devServer: {
-      port: 3000,
+      port: 3001,
       // open: true,
     },
     devtool: "source-map",

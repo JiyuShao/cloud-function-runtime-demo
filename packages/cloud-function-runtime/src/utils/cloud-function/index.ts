@@ -10,15 +10,20 @@ class CloudFunction {
     this.isolate = new ivm.Isolate({ memoryLimit: 8 /* MB */ });
   }
 
-  public createCloudFunction = (code: string): ((...args: any[]) => string) => {
+  public createCloudFunction = (
+    code: string
+  ): ((...args: any[]) => Promise<string>) => {
     const context = this.isolate.createContextSync();
     const global = context.global;
     global.setSync("global", global.derefInto());
 
-    const script: Script = this.isolate.compileScriptSync(code);
-    const cloudFunction = script.runSync(context);
-    return (...args: any[]) => {
-      return cloudFunction(...args);
+    async function runCode(...args: any[]) {
+      const fn: any = await context.eval(code, { reference: true });
+      return fn.apply(undefined, args, { result: { promise: true } });
+    }
+
+    return async (...args: any[]) => {
+      return runCode(...args);
     };
   };
 
@@ -27,12 +32,15 @@ class CloudFunction {
   }
 }
 
-export const invokeCloudFunction = (code: string, args: any[]): string => {
+export const invokeCloudFunction = async (
+  code: string,
+  args: any[]
+): Promise<string> => {
   let instance: CloudFunction | null = null;
   try {
     instance = new CloudFunction({});
     const func = instance.createCloudFunction(code);
-    const result = func(...args);
+    const result = await func(...args);
     instance.destory();
     return result;
   } catch (error) {

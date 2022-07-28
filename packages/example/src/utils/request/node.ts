@@ -27,8 +27,9 @@ export const configure = (options: IOptions<typeof nodeFetch>) => {
 export const createRequest: RequestCreator = (
   path: string,
   method: string,
-  fetch = nodeFetch as any
+  options
 ) => {
+  const { origin = "", fetch = nodeFetch } = options || {};
   const getFinalPath = compile(path, { encode: encodeURIComponent });
   const keys: Key[] = [];
   pathToRegexp(path, keys);
@@ -72,7 +73,7 @@ export const createRequest: RequestCreator = (
       }
     }
 
-    const url = finalPath;
+    const url = `${origin}${finalPath}`;
 
     const fetcher = realRequest || fetch;
 

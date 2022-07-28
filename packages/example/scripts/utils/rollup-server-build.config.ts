@@ -42,6 +42,11 @@ const getUniqueApiFileName = (path: string) => {
 const updateManifest: RollupPluginPostBuildOptions["callback"] = async (
   result
 ) => {
+  console.log(
+    `Build ${getRelativeApiFilePath(result.inputFilePath)} to ${
+      result.outputFileName
+    }`
+  );
   const manifestJsonPath = resolvePath("dist/server/manifest.json");
   let manifestJson: ManifestJson = {
     namespace: config.namespace,
@@ -72,8 +77,8 @@ export default getMatchedApiFilePath(config.cwd, config.apiFilePattern).map(
     const rollupConfig: rollup.RollupOptions = {
       input,
       output: {
-        exports: "default",
-        format: "es",
+        exports: "auto",
+        format: "cjs",
         file: resolvePath(`dist/server/${uniqueFileName}`),
         sourcemap: true,
       },

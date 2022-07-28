@@ -19,11 +19,8 @@ export const configure = (options: IOptions) => {
   }
 };
 
-export const createRequest: RequestCreator = (
-  path,
-  method,
-  fetch = originFetch
-) => {
+export const createRequest: RequestCreator = (path, method, options) => {
+  const { origin = "", fetch = originFetch } = options || {};
   const getFinalPath = compile(path, { encode: encodeURIComponent });
   const keys: Key[] = [];
   pathToRegexp(path, keys);
@@ -38,10 +35,10 @@ export const createRequest: RequestCreator = (
       payload.params![key.name] = args[index];
     });
 
-    const finalPath = getFinalPath(payload.params);
-    const finalURL = payload.query
-      ? `${finalPath}?${qsStringify(payload.query)}`
-      : finalPath;
+    const plainPath = getFinalPath(payload.params);
+    const finalPath = payload.query
+      ? `${plainPath}?${qsStringify(payload.query)}`
+      : plainPath;
     const headers = payload.headers || {};
     let body: any =
       payload.data && typeof payload.data === "object"
@@ -79,7 +76,9 @@ export const createRequest: RequestCreator = (
       }
     }
 
-    return fetcher(finalURL, {
+    const url = `${origin}${finalPath}`;
+
+    return fetcher(url, {
       method,
       body,
       headers,

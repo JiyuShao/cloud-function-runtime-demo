@@ -5,7 +5,7 @@ export async function init() {
   try {
     // Starting the HTTP server
     logger.info("Starting HTTP server");
-    const port = Number(process.env.PORT) || 8080;
+    const port = 3000;
     const app = createServer();
 
     app.listen(port);

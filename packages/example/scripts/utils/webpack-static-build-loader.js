@@ -2,13 +2,19 @@
  * @Author: Jiyu Shao
  * @Date: 2022-07-26 10:52:34
  * @Last Modified by: Jiyu Shao
- * @Last Modified time: 2022-07-26 18:18:37
+ * @Last Modified time: 2022-07-28 19:02:44
  */
+const path = require("path");
 const babelParse = require("@babel/parser");
 const traverse = require("@babel/traverse").default;
 
+function resolvePath(relativePath = "") {
+  return path.resolve(__dirname, `../../${relativePath}`);
+}
+
 module.exports = function WebpackStaticBuildLoader(code) {
   try {
+    const fileName = this.resourcePath.replace(`${resolvePath("src")}/`, "");
     const { cwd } = this.getOptions() || {};
     if (!cwd) {
       throw new Error("option.cwd 不存在");
@@ -43,21 +49,19 @@ module.exports = function WebpackStaticBuildLoader(code) {
     return `
     import createRequest from "@utils/request";
     export default async (...args: any[]) => {
-      return createRequest(
-        "/invoke",
-        "POST"
-      )({
+      return createRequest("/inner-cgi/invokeBFF", "POST", {
+        origin: "http://localhost:3000",
+      })({
         data: {
-          isBFFCloudFunction: true,
-          functionPath: "${this.resourcePath}",
+          functionName: "${fileName}",
           args,
         },
-      });
+      }).then((res) => JSON.parse(res).result);
     };
     `;
   } catch (error) {
     console.error("WebpackStaticBuildLoader 解析出错：", {
-      path: this.resourcePath,
+      path: this.resolvePath,
       error,
     });
   }

@@ -7,10 +7,10 @@
 yarn start
 
 # 请求示例
-curl --location --request POST 'localhost:8080/inner-cgi/invoke' \
+curl --location --request POST 'localhost:3000/inner-cgi/invoke' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "code": "(a, b) => a + b",
+    "code": "module.exports = (a, b) => a + b",
     "args": [
         1,
         2

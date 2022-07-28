@@ -1,7 +1,7 @@
 {
   "configurations": [
     {
-      "name": "cloud-function-runtime",
+      "name": "start:cloud-function-runtime",
       "type": "node",
       "request": "launch",
       "args": ["./packages/cloud-function-runtime/src/index.ts"],
@@ -12,7 +12,19 @@
       "outputCapture": "std"
     },
     {
-      "name": "example:debug-static",
+      "name": "start:example-server",
+      "type": "node",
+      "request": "launch",
+      "args": ["./packages/example/scripts/debug-server.ts"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "env": { "TS_NODE_PROJECT": "./packages/example/tsconfig.json" },
+      "cwd": "${workspaceRoot}",
+      "internalConsoleOptions": "openOnSessionStart",
+      // Capture "std" instead of "console"
+      "outputCapture": "std"
+    },
+    {
+      "name": "start:example-static",
       "type": "node",
       "request": "launch",
       "args": ["./packages/example/scripts/debug-static.ts"],

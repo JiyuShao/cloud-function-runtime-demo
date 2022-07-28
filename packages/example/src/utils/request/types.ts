@@ -19,7 +19,10 @@ export type Sender = ((...args: any[]) => Promise<any>) & {
 export type RequestCreator = (
   path: string,
   method: string,
-  fetch?: Fetch
+  options: {
+    origin?: string;
+    fetch?: Fetch;
+  }
 ) => Sender;
 
 export type IOptions<F = typeof fetch> = {
