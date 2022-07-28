@@ -1,22 +1,20 @@
-import path from "path";
 import { Configuration } from "webpack";
+import "webpack-dev-server";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import WebpackStaticBuildPlugin from "./utils/webpack-static-build-plugin";
-
-function resolvePath(relativePath: string) {
-  return path.resolve(__dirname, `../${relativePath}`);
-}
+import WebpackStaticBuildPlugin from "./webpack-static-build-plugin";
+import { resolvePath } from "./path";
+import config from "./config";
 
 export default function getWebpackConfig(
   mode: Configuration["mode"]
 ): Configuration {
-  const config: Configuration = {
+  const configuration: Configuration = {
     mode,
     entry: {
       index: resolvePath("src/index"),
     },
     output: {
-      path: resolvePath("dist"),
+      path: resolvePath("dist/static"),
     },
     devServer: {
       port: 3000,
@@ -52,13 +50,13 @@ export default function getWebpackConfig(
         template: resolvePath("public/index.html"),
       }),
       new WebpackStaticBuildPlugin({
-        cwd: resolvePath("src"),
-        apiPattern: "api/**/*.ts",
+        cwd: config.cwd,
+        apiFilePattern: config.apiFilePattern,
       }),
     ],
     stats: {
       errorDetails: true,
     },
   };
-  return config;
+  return configuration;
 }

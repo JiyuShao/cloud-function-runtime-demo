@@ -1,5 +1,5 @@
 import Webpack from "webpack";
-import getWebpackConfig from "./utils/webpack.static.config";
+import getWebpackConfig from "./utils/webpack.server.config";
 
 const webpackConfig = getWebpackConfig("production");
 Webpack(webpackConfig, (err, stats) => {

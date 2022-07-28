@@ -3,24 +3,24 @@
  * @Author: Jiyu Shao
  * @Date: 2022-07-26 10:12:58
  * @Last Modified by: Jiyu Shao
- * @Last Modified time: 2022-07-27 14:14:21
+ * @Last Modified time: 2022-07-27 15:08:10
  */
 import path from "path";
 import Webpack from "webpack";
 import minimatch from "minimatch";
 
-const PLUGIN_NAME = "WEBPACK_STATIC_BUILD_PLUGIN";
+const PLUGIN_NAME = "WEBPACK_SERVER_BUILD_PLUGIN";
 
-export interface WebpackStaticBuildPluginOptions {
+export interface WebpackServerBuildPluginOptions {
   /** 匹配根目录 */
   cwd: string;
   /** api 文件匹配规则 */
   apiFilePattern: string;
 }
-export default class WebpackStaticBuildPlugin {
-  private _options: WebpackStaticBuildPluginOptions;
+export default class WebpackServerBuildPlugin {
+  private _options: WebpackServerBuildPluginOptions;
 
-  constructor(options: WebpackStaticBuildPluginOptions) {
+  constructor(options: WebpackServerBuildPluginOptions) {
     this._options = options;
   }
 
@@ -35,7 +35,7 @@ export default class WebpackStaticBuildPlugin {
             return;
           }
           normalModule.loaders.push({
-            loader: path.resolve(__dirname, "./webpack-static-build-loader.js"),
+            loader: path.resolve(__dirname, "./webpack-server-build-loader.js"),
             ident: null,
             type: null,
             options: {

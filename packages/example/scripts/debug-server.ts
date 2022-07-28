@@ -1,6 +1,6 @@
 import Webpack from "webpack";
 import WebpackDevServer from "webpack-dev-server";
-import getWebpackConfig from "./utils/webpack.static.config";
+import getWebpackConfig from "./utils/webpack.server.config";
 
 const webpackConfig = getWebpackConfig("development");
 const compiler = Webpack(webpackConfig);

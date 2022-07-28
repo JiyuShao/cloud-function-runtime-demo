@@ -5,9 +5,10 @@
   "description": "",
   "scripts": {
     "dev-static": "ts-node --project ./tsconfig.json ./scripts/debug-static.ts",
-    "build-static": "yarn run clean && yarn run build:webpack",
-    "build:webpack": "ts-node --project ./tsconfig.json ./scripts/build-static.ts",
-    "clean": "rimraf lib"
+    "dev-server": "ts-node --project ./tsconfig.json ./scripts/debug-server.ts",
+    "build-static": "ts-node --project ./tsconfig.json ./scripts/build-static.ts",
+    "build-server": "ts-node --project ./tsconfig.json ./scripts/build-server.ts",
+    "clean": "rimraf dist"
   },
   "devDependencies": {
     "@babel/generator": "^7.18.9",
@@ -16,13 +17,19 @@
     "@types/babel__generator": "^7.6.4",
     "@types/babel__traverse": "^7.17.1",
     "@types/rimraf": "^3",
+    "@types/uuid": "^8.3.4",
     "css-loader": "^6.7.1",
+    "glob": "^8.0.3",
     "html-webpack-plugin": "^5.5.0",
     "node-fetch": "^3.2.9",
+    "path-to-regexp": "^6.2.1",
+    "query-string": "^7.1.1",
     "rimraf": "^3.0.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.3.1",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
+    "typescript": "^4.7.4",
+    "uuid": "^8.3.2",
     "webpack": "^5.73.0",
     "webpack-dev-server": "^4.9.3"
   }

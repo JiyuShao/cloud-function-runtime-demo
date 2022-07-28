@@ -3,9 +3,6 @@
 ## 快速开始
 
 ```bash
-# 安装
-yarn install
-
 # 运行
 yarn start
 
