@@ -5,10 +5,9 @@
   "description": "",
   "scripts": {
     "dev-static": "ts-node --project ./tsconfig.json ./scripts/debug-static.ts",
-    "dev-server": "ts-node --project ./tsconfig.json ./scripts/debug-server.ts",
-    "build-static": "ts-node --project ./tsconfig.json ./scripts/build-static.ts",
-    "build-server": "ts-node --project ./tsconfig.json ./scripts/build-server.ts",
-    "clean": "rimraf dist"
+    "dev-server": "rimraf dist/server && ts-node --project ./tsconfig.json ./scripts/debug-server.ts",
+    "build-static": "rimraf dist/static && ts-node --project ./tsconfig.json ./scripts/build-static.ts",
+    "build-server": "rimraf dist/server && ts-node --project ./tsconfig.json ./scripts/build-server.ts"
   },
   "devDependencies": {
     "@babel/generator": "^7.18.9",

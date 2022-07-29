@@ -18,7 +18,7 @@ export default function getWebpackConfig(
     },
     devServer: {
       port: 3001,
-      // open: true,
+      open: true,
     },
     devtool: "source-map",
     resolve: {

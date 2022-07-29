@@ -11,8 +11,8 @@
   "description": "云函数运行环境 demo",
   "scripts": {
     "start": "yarn workspace cloud-function-runtime run start",
-    "start:example-server": "yarn workspace example run dev-server",
     "start:example-static": "yarn workspace example run dev-static",
+    "start:example-server": "yarn workspace example run dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
